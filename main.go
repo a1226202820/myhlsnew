@@ -107,6 +107,7 @@ func init() {
 		}
 	})
 	checkHik()
+	//定义间隔函数，不停的获取设备数量
 	spec1 := "* */10 * * * ?"
 	c1 := cron.New()
 	c1.AddFunc(spec1, func() {
