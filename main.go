@@ -110,7 +110,7 @@ func init() {
 	spec1 := "* */10 * * * ?"
 	c1 := cron.New()
 	c1.AddFunc(spec1, func() {
-		checkHik()
+		//checkHik()
 	})
 	c1.Start()
 	spec2 := "0 */10 * * * ?"
@@ -275,6 +275,7 @@ func (p *HLS) Publish(streamName string) (result bool) {
 func checkHik() {
 	var deviceInfo []*DeviceInfo
 	deviceInfo = GetDeviceList()
+	log.Println("设备数量：" + len(deviceInfo))
 	for i := 0; i < len(deviceInfo); i++ {
 		hikURL := HKM3U8URLF + deviceInfo[i].SysCode + HKM3U8URLB
 		log.Println(hikURL)
