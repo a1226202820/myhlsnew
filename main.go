@@ -111,7 +111,7 @@ func init() {
 	spec1 := "* */10 * * * ?"
 	c1 := cron.New()
 	c1.AddFunc(spec1, func() {
-		//checkHik()
+		checkHik()
 	})
 	c1.Start()
 	spec2 := "0 */10 * * * ?"
@@ -245,7 +245,9 @@ func (p *HLS) run(info *M3u8Info) {
 				info.M3u8Info = append(info.M3u8Info, tsCost)
 			}
 
-			time.Sleep(time.Second * time.Duration(playlist.Target) * 2)
+			//time.Sleep(time.Second * time.Duration(playlist.Target) * 2)
+			log.Printf("%s 延迟20秒:%v")
+			time.Sleep(time.Second * time.Duration(20))
 		} else {
 			// log.Printf("%s readM3u8:%v", p.StreamPath, err)
 			errcount++
@@ -276,12 +278,12 @@ func (p *HLS) Publish(streamName string) (result bool) {
 func checkHik() {
 	var deviceInfo []*DeviceInfo
 	deviceInfo = GetDeviceList()
-	log.Println("设备数量：" + len(deviceInfo))
+	//log.Println("设备数量：" + len(deviceInfo))
 	for i := 0; i < len(deviceInfo); i++ {
 		hikURL := HKM3U8URLF + deviceInfo[i].SysCode + HKM3U8URLB
 		log.Println(hikURL)
 		pull(hikURL, deviceInfo[i].SysCode)
-		time.Sleep(time.Duration(5) * time.Second)
+		time.Sleep(time.Duration(1) * time.Second)
 	}
 }
 
