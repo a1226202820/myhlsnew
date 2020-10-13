@@ -106,7 +106,7 @@ func init() {
 			}
 		}
 	})
-	//checkHik()
+	checkHik()
 	spec1 := "* */10 * * * ?"
 	c1 := cron.New()
 	c1.AddFunc(spec1, func() {
